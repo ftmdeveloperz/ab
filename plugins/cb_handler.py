@@ -68,10 +68,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
             return
         UPLOAD_TO_DRIVE.update({f"{cb.from_user.id}": True})
         await cb.message.edit(
-            text="Okay I'll upload to drive\nDo you want to rename? Default file name is **@ftmdeveloper @ftmmovieskiduniya 
-            📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀
-            🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾
-            ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
+            text="Okay I'll upload to drive\nDo you want to rename? Default file name is **@ftmdeveloper 📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀                                🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER                         ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs.⏳**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -103,10 +100,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
     elif cb.data == "document":
         UPLOAD_AS_DOC.update({f"{cb.from_user.id}": True})
         await cb.message.edit(
-            text="Do you want to rename? Default file name is **@ftmdeveloper @ftmmovieskiduniya 
-            📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀
-            🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾
-            ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
+            text="Do you want to rename? Default file name is **@ftmdeveloper 📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀                                🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER                         ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs.⏳**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -122,10 +116,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
     elif cb.data == "video":
         UPLOAD_AS_DOC.update({f"{cb.from_user.id}": False})
         await cb.message.edit(
-            text="Do you want to rename? Default file name is **@ftmdeveloper @ftmmovieskiduniya 
-            📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀
-            🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾
-            ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
+            text="Do you want to rename? Default file name is **@ftmdeveloper 📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀                                🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER                         ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs.⏳**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -155,7 +146,7 @@ async def callback_handler(c: Client, cb: CallbackQuery):
         user = UserSettings(cb.from_user.id, cb.from_user.first_name)
         if "YES" in cb.data:
             await cb.message.edit(
-                "Current filename: **@ftmdeveloper {media.file_name} @ftmmovieskiduniya/n/n💾 Sɪᴢᴇ: {filesize}/n/n⏰ Dᴜʀᴀᴛɪᴏɴ: {duration}/n/n📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀/n/n🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾/n⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**\n\nSend me new file name without extension: You have 1 minute"
+                "Current filename: **@ftmdeveloper 📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀                                🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER                         ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs.⏳**\n\nSend me new file name without extension: You have 1 minute"
             )
             res: Message = await c.listen(chat_id=cb.message.chat.id, filters=filters.text, listener_type=ListenerTypes.MESSAGE, timeout=120, user_id=cb.from_user.id)
             if res.text:
