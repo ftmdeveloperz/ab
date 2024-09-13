@@ -57,7 +57,7 @@ class MergeBot(Client):
             self.send_message(chat_id=int(Config.OWNER), text="<b>Bot Started!</b>")
         except Exception as err:
             LOGGER.error("Boot alert failed! Please start bot in PM")
-        return LOGGER.info("Bot Started!")
+        return LOGGER.info("Bot Started! and It is running as a Free 🐦 Bird. OWNER= ftmdeveloper")
 
     def stop(self):
         super().stop()
@@ -488,10 +488,10 @@ async def about_handler(c: Client, m: Message):
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("👨‍💻Developer👨‍💻", url="https://t.me/yashoswalyo")],
+                [InlineKeyboardButton("👨‍💻Developer👨‍💻", url="https://t.me/ftmdeveloper")],
                 [
                     InlineKeyboardButton(
-                        "🏘Source Code🏘", url="https://github.com/yashoswalyo/MERGE-BOT"
+                        "🏘Source Code🏘", url="https://github.com/ftmdeveloper/MERGE-BOT"
                     ),
                     InlineKeyboardButton(
                         "🤔Deployed By🤔", url=f"https://t.me/{Config.OWNER_USERNAME}"
