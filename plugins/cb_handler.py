@@ -68,7 +68,10 @@ async def callback_handler(c: Client, cb: CallbackQuery):
             return
         UPLOAD_TO_DRIVE.update({f"{cb.from_user.id}": True})
         await cb.message.edit(
-            text="Okay I'll upload to drive\nDo you want to rename? Default file name is **@ftmdeveloper {media.file_name} @ftmmovieskiduniya/n/n💾 Sɪᴢᴇ: {filesize}/n/n⏰ Dᴜʀᴀᴛɪᴏɴ: {duration}/n/n📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀/n/n🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾/n⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
+            text="Okay I'll upload to drive\nDo you want to rename? Default file name is **@ftmdeveloper @ftmmovieskiduniya 
+            📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀
+            🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾
+            ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -100,7 +103,10 @@ async def callback_handler(c: Client, cb: CallbackQuery):
     elif cb.data == "document":
         UPLOAD_AS_DOC.update({f"{cb.from_user.id}": True})
         await cb.message.edit(
-            text="Do you want to rename? Default file name is **@ftmdeveloper {media.file_name} @ftmmovieskiduniya/n/n💾 Sɪᴢᴇ: {filesize}/n/n⏰ Dᴜʀᴀᴛɪᴏɴ: {duration}/n/n📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀/n/n🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾/n⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
+            text="Do you want to rename? Default file name is **@ftmdeveloper @ftmmovieskiduniya 
+            📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀
+            🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾
+            ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -116,7 +122,10 @@ async def callback_handler(c: Client, cb: CallbackQuery):
     elif cb.data == "video":
         UPLOAD_AS_DOC.update({f"{cb.from_user.id}": False})
         await cb.message.edit(
-            text="Do you want to rename? Default file name is **@ftmdeveloper {media.file_name} @ftmmovieskiduniya/n/n💾 Sɪᴢᴇ: {filesize}/n/n⏰ Dᴜʀᴀᴛɪᴏɴ: {duration}/n/n📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀/n/n🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾/n⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
+            text="Do you want to rename? Default file name is **@ftmdeveloper @ftmmovieskiduniya 
+            📥 Uᴘʟᴏᴀᴅᴇᴅ Bʏ @FTMMOVIESKIDUNIYA 🚀
+            🔧 Rɪᴘᴘᴇᴅ Bʏ @FTMDEVELOPER  💾
+            ⚠️ Dɪsᴄʟᴀɪᴍᴇʀ: Tʜɪs ғɪʟᴇ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ 𝟷𝟶 ᴍɪɴᴜᴛᴇs, sᴏ ᴘʟᴇᴀsᴇ ғᴏʀᴡᴀʀᴅ ɪᴛ ᴛᴏ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴍᴇssᴀɢᴇs. ⏳**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
