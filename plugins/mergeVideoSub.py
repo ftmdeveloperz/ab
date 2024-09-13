@@ -98,9 +98,9 @@ async def mergeSub(c: Client, cb: CallbackQuery, new_file_name: str):
         formatDB.update({cb.from_user.id: None})
         return
     try:
-        await cb.message.edit("✅ Sucessfully Muxed Video !")
+        await cb.message.edit("✅ Sucessfully Mixed Video !")
     except MessageNotModified:
-        await cb.message.edit("Sucessfully Muxed Video ! ✅")
+        await cb.message.edit("Sucessfully Mixed Video ! ✅")
     LOGGER.info(f"Video muxed for: {cb.from_user.first_name} ")
     await asyncio.sleep(3)
     file_size = os.path.getsize(subbed_video)
@@ -124,9 +124,9 @@ async def mergeSub(c: Client, cb: CallbackQuery, new_file_name: str):
         queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
         formatDB.update({cb.from_user.id: None})
         return
-    if Config.IS_PREMIUM and file_size > 4241280205:
+    if Config.IS_PREMIUM and file_size > 10737418240:
         await cb.message.edit(
-            f"Video is Larger than 4GB Can't Upload,\n\n Tell {Config.OWNER_USERNAME} to die with premium account"
+            f"Video is Larger than 10GB Can't Upload,\n\n Tell {Config.OWNER_USERNAME} to die with premium account"
         )
         await delete_all(root=f"downloads/{str(cb.from_user.id)}")
         queueDB.update({cb.from_user.id: {"videos": [], "subtitles": [], "audios": []}})
