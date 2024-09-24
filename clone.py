@@ -1,4 +1,6 @@
 import json
+from telegram import Update
+from telegram.ext import CallbackContext
 from premium_management import is_user_premium
 
 CLONE_FILE = 'cloned_bots.json'
