@@ -27,6 +27,13 @@ from pyrogram.types import (
     User,
 )
 
+import json
+import os
+from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
+from premium_management import add_premium_user, remove_premium_user, check_premium_status
+from clone import clone_bot
+
 from __init__ import (
     AUDIO_EXTENSIONS,
     BROADCAST_MSG,
@@ -115,6 +122,79 @@ async def loginHandler(c: Client, m: Message):
     del user
     return
 
+
+
+# Load the JSON data for premium users and plans
+if os.path.exists('premium_users.json'):
+    with open('premium_users.json', 'r') as f:
+        premium_data = json.load(f)
+else:
+    premium_data = {}
+
+# Function to handle premium features command
+@mergeApp.on_message(commands=['premiumfeatures'])
+async def premium_features(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    features = """
+    Premium Features:
+    - Maximum upload limit of 10GB for Platinum users.
+    - Access to exclusive processing features.
+    - Priority support and feature requests.
+    - Ad-free experience.
+    """
+    await update.message.reply_text(features)
+
+# Function to add a premium user
+@mergeApp.on_message(commands=['addpremium'])
+async def add_premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if context.args and len(context.args) == 2:
+        user_id = context.args[0]
+        plan = context.args[1]  # e.g., "platinum" or "basic"
+        result = add_premium_user(user_id, plan)
+        await update.message.reply_text(result)
+    else:
+        await update.message.reply_text("Usage: /addpremium <user_id> <plan>")
+
+# Function to remove a premium user
+@mergeApp.on_message(commands=['removepremium'])
+async def remove_premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if context.args:
+        user_id = context.args[0]
+        result = remove_premium_user(user_id)
+        await update.message.reply_text(result)
+    else:
+        await update.message.reply_text("Usage: /removepremium <user_id>")
+
+# Function to check premium status
+@mergeApp.on_message(commands=['checkpremium'])
+async def check_premium(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if context.args:
+        user_id = context.args[0]
+        status = check_premium_status(user_id)
+        await update.message.reply_text(status)
+    else:
+        await update.message.reply_text("Usage: /checkpremium <user_id>")
+
+# Function to handle cloning
+@mergeApp.on_message(commands=['cloneftm'])
+async def cloneftm(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if context.args:
+        bot_token = context.args[0]
+        response = clone_bot(bot_token)
+        await update.message.reply_text(response)
+    else:
+        await update.message.reply_text("Usage: /cloneftm <bot_token>")
+
+# Main function to run the bot
+if __name__ == "__main__":
+    app = ApplicationBuilder().token("YOUR_TELEGRAM_BOT_TOKEN").build()
+    
+    # Add handlers
+    app.add_handler(CommandHandler("premiumfeatures", premium_features))
+    app.add_handler(CommandHandler("addpremium", add_premium))
+    app.add_handler(CommandHandler("removepremium", remove_premium))
+    app.add_handler(CommandHandler("checkpremium", check_premium))
+    app.add_handler(CommandHandler("cloneftm", cloneftm))
+    
 
 @mergeApp.on_message(filters.command(["stats"]) & filters.private)
 async def stats_handler(c: Client, m: Message):
