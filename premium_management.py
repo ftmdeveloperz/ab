@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 PREMIUM_FILE = 'premium_users.json'
 
-# Define subscription plans and features
+# Define subscription plans and their features
 SUBSCRIPTION_PLANS = {
     'Basic': {
         'max_upload': '2GB',
@@ -38,7 +38,7 @@ def save_premium_users(premium_users):
     with open(PREMIUM_FILE, 'w') as f:
         json.dump({"premium_users": premium_users}, f, indent=4)
 
-# Add or update premium user to the JSON file
+# Add or update a premium user
 def add_premium_user(user_id, days=30, plan='Basic'):
     if plan not in SUBSCRIPTION_PLANS:
         raise ValueError("Invalid subscription plan.")
@@ -46,13 +46,14 @@ def add_premium_user(user_id, days=30, plan='Basic'):
     premium_users = load_premium_users()
     expiration_date = (datetime.now() + timedelta(days=days)).isoformat()
 
-    # Check if the user already exists
+    # Check if the user already exists, update if found
     for user in premium_users:
         if user['user_id'] == user_id:
             user['expiration_date'] = expiration_date
             user['plan'] = plan
             break
     else:
+        # Add new user
         premium_users.append({
             "user_id": user_id,
             "expiration_date": expiration_date,
@@ -61,22 +62,29 @@ def add_premium_user(user_id, days=30, plan='Basic'):
 
     save_premium_users(premium_users)
 
-# Check if a user is premium and get their features
+# Check if the user is premium and retrieve their plan and features
 def is_user_premium(user_id):
     premium_users = load_premium_users()
     for user in premium_users:
         if user['user_id'] == user_id:
             if datetime.fromisoformat(user['expiration_date']) > datetime.now():
                 plan = user['plan']
-                return True, plan, SUBSCRIPTION_PLANS[plan]  # Return plan and features
+                return True, plan, SUBSCRIPTION_PLANS[plan]  # Return plan and its features
     return False, None, None
 
-# Remove expired users
+# Remove a premium user from the list
+def remove_premium_user(user_id):
+    premium_users = load_premium_users()
+    updated_users = [user for user in premium_users if user['user_id'] != user_id]
+    save_premium_users(updated_users)
+    return f"User {user_id} removed from premium list."
+
+# Clean up expired users
 def remove_expired_users():
     premium_users = load_premium_users()
     premium_users = [user for user in premium_users if datetime.fromisoformat(user['expiration_date']) > datetime.now()]
     save_premium_users(premium_users)
 
-# Example Usage
+# Example function to regularly clean up expired users
 if __name__ == "__main__":
-    remove_expired_users()  # Call this to clean up expired users regularly
+    remove_expired_users()
