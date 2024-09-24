@@ -1,0 +1,21 @@
+{
+    "premium_users": [
+        {
+            "user_id": 7042535787,
+            "is_premium": true,
+            "plan": "Platinum",
+            "features": [
+                "Max upload limit: 10GB",
+                "Access to premium features"
+            ]
+        },
+        {
+            "user_id": 6021628995,
+            "is_premium": false,
+            "plan": "Basic",
+            "features": [
+                "Max upload limit: 2GB"
+            ]
+        }
+    ]
+}
