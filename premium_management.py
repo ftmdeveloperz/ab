@@ -1,51 +1,82 @@
 import json
 from datetime import datetime, timedelta
 
+PREMIUM_FILE = 'premium_users.json'
+
+# Define subscription plans and features
+SUBSCRIPTION_PLANS = {
+    'Basic': {
+        'max_upload': '2GB',
+        'max_processing': '2GB',
+        'features': [
+            'Basic support',
+            'Access to standard features'
+        ]
+    },
+    'Platinum': {
+        'max_upload': '10GB',
+        'max_processing': '10GB',
+        'features': [
+            'Priority support',
+            'Access to premium features',
+            'Advanced tools'
+        ]
+    }
+}
+
 # Load premium users from JSON file
 def load_premium_users():
     try:
-        with open('premium_users.json', 'r') as file:
-            return json.load(file)
+        with open(PREMIUM_FILE, 'r') as f:
+            data = json.load(f)
+            return data.get("premium_users", [])
     except FileNotFoundError:
-        return {}
+        return []
 
 # Save premium users to JSON file
 def save_premium_users(premium_users):
-    with open('premium_users.json', 'w') as file:
-        json.dump(premium_users, file, indent=4)
+    with open(PREMIUM_FILE, 'w') as f:
+        json.dump({"premium_users": premium_users}, f, indent=4)
 
-# Add a user to the premium list with an expiration date and plan
+# Add or update premium user to the JSON file
 def add_premium_user(user_id, days=30, plan='Basic'):
+    if plan not in SUBSCRIPTION_PLANS:
+        raise ValueError("Invalid subscription plan.")
+
     premium_users = load_premium_users()
-    expiration_date = datetime.now() + timedelta(days=days)
-    premium_users[str(user_id)] = {
-        "expiration_date": expiration_date.isoformat(),
-        "plan": plan
-    }
+    expiration_date = (datetime.now() + timedelta(days=days)).isoformat()
+
+    # Check if the user already exists
+    for user in premium_users:
+        if user['user_id'] == user_id:
+            user['expiration_date'] = expiration_date
+            user['plan'] = plan
+            break
+    else:
+        premium_users.append({
+            "user_id": user_id,
+            "expiration_date": expiration_date,
+            "plan": plan
+        })
+
     save_premium_users(premium_users)
 
-# Check if a user is premium and return their plan
-def get_user_plan(user_id):
+# Check if a user is premium and get their features
+def is_user_premium(user_id):
     premium_users = load_premium_users()
-    user_data = premium_users.get(str(user_id))
-    if user_data:
-        expiration_date = datetime.fromisoformat(user_data['expiration_date'])
-        if datetime.now() < expiration_date:
-            return user_data["plan"]
-    return None
+    for user in premium_users:
+        if user['user_id'] == user_id:
+            if datetime.fromisoformat(user['expiration_date']) > datetime.now():
+                plan = user['plan']
+                return True, plan, SUBSCRIPTION_PLANS[plan]  # Return plan and features
+    return False, None, None
 
 # Remove expired users
-def remove_expired_premium_users():
+def remove_expired_users():
     premium_users = load_premium_users()
-    current_time = datetime.now()
-    premium_users = {user_id: data for user_id, data in premium_users.items() if datetime.fromisoformat(data['expiration_date']) > current_time}
+    premium_users = [user for user in premium_users if datetime.fromisoformat(user['expiration_date']) > datetime.now()]
     save_premium_users(premium_users)
 
-# Get storage limit based on plan
-def get_storage_limit(user_id):
-    plan = get_user_plan(user_id)
-    if plan == 'Platinum':
-        return 10 * 1024  # 10 GB
-    elif plan == 'Basic':
-        return 2 * 1024   # 2 GB
-    return 0  # Non-premium users have 0 GB limit
+# Example Usage
+if __name__ == "__main__":
+    remove_expired_users()  # Call this to clean up expired users regularly
