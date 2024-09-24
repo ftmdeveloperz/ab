@@ -1,23 +1,59 @@
-import os
-import subprocess
+import json
+from telegram import Update
+from telegram.ext import CallbackContext
+from premium_management import is_user_premium
 
-def clone_bot(token, owner_id):
-    # Clone the bot logic here, maybe deploying a new instance using Docker or Heroku
-    # This is a placeholder for actual cloning logic
-    # For simplicity, we'll just create a new bot.py file with the new token
-    with open(f'clone_bot_{owner_id}.py', 'w') as file:
-        file.write(f'''
-import telegram
-bot = telegram.Bot(token="{token}")
+CLONE_FILE = 'cloned_bots.json'
 
-def start(update, context):
-    update.message.reply_text("Welcome to the cloned bot!")
+# Load cloned bots from JSON file
+def load_cloned_bots():
+    try:
+        with open(CLONE_FILE, 'r') as f:
+            data = json.load(f)
+            return data.get("cloned_bots", [])
+    except FileNotFoundError:
+        return []
 
-bot.add_handler(telegram.ext.CommandHandler("start", start))
-bot.run_polling()
-        ''')
-    return f'clone_bot_{owner_id}.py'
+# Save cloned bots to JSON file
+def save_cloned_bots(cloned_bots):
+    with open(CLONE_FILE, 'w') as f:
+        json.dump({"cloned_bots": cloned_bots}, f, indent=4)
 
-def deploy_bot(owner_id):
-    # Example of deploying the cloned bot
-    subprocess.run(["python3", f"clone_bot_{owner_id}.py"])
+# Clone a bot
+def clone_bot(update: Update, context: CallbackContext):
+    user_id = update.message.from_user.id
+    bot_token = context.args[0] if context.args else None
+
+    # Check if the user is premium
+    is_premium, plan, features = is_user_premium(user_id)
+    
+    if not is_premium:
+        update.message.reply_text("This feature is available for premium users only.")
+        return
+
+    if bot_token is None:
+        update.message.reply_text("Please provide the bot token to clone.")
+        return
+
+    # You can add additional logic to validate the bot token here
+
+    cloned_bots = load_cloned_bots()
+    
+    # Check if the bot is already cloned
+    for bot in cloned_bots:
+        if bot['token'] == bot_token:
+            update.message.reply_text("This bot has already been cloned.")
+            return
+
+    # Add the new cloned bot to the list
+    cloned_bots.append({
+        "user_id": user_id,
+        "token": bot_token
+    })
+
+    save_cloned_bots(cloned_bots)
+    update.message.reply_text("Bot cloned successfully!")
+
+# Example Usage
+if __name__ == "__main__":
+    print("Clone module ready.")
