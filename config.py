@@ -3,7 +3,7 @@ import os
 
 class Config(object):
     API_HASH = os.environ.get("API_HASH", "b3a786dce1f4e7d56674b7cadfde3c9d")
-    BOT_TOKEN = os.environ.get("BOT_TOKEN", "7270862829:AAFY2KNsTk2MnU2xrOvHochDsrdnyOkFW98")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "7037453058:AAHtvalrkVW_uYiNAC14jToJoC-DfB8B2aI")
     TELEGRAM_API = os.environ.get("TELEGRAM_API", "28776072")
     OWNER = os.environ.get("OWNER", "7042535787")
     OWNER_USERNAME = os.environ.get("OWNER_USERNAME", "ftmdeveloper")
