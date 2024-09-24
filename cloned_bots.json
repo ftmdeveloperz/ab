@@ -1,0 +1,12 @@
+{
+    "cloned_bots": [
+        {
+            "user_id": 123456789,
+            "token": "YOUR_BOT_TOKEN_1"
+        },
+        {
+            "user_id": 987654321,
+            "token": "YOUR_BOT_TOKEN_2"
+        }
+    ]
+}
