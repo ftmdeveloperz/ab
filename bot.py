@@ -29,7 +29,6 @@ from pyrogram.types import (
 
 import json
 import os
-from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from premium_management import add_premium_user, remove_premium_user, check_premium_status
 from clone import clone_bot
