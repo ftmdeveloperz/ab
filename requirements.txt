@@ -8,4 +8,5 @@ Pyrogram
 pyromod
 python-dotenv
 requests
+python-telegram-bot==20.0  # Specify the version you're using
 TgCrypto
