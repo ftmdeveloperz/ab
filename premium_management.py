@@ -71,7 +71,18 @@ def is_user_premium(user_id):
                 plan = user['plan']
                 return True, plan, SUBSCRIPTION_PLANS[plan]  # Return plan and its features
     return False, None, None
+#ftmonly
+def check_premium_status(user_id):
+    """
+    Check the premium status of a user.
 
+    Args:
+        user_id (str): The user ID to check.
+
+    Returns:
+        dict: A dictionary containing the premium status and expiration date.
+    """
+    return user_premium_status.get(user_id, {"is_premium": False})
 # Remove a premium user from the list
 def remove_premium_user(user_id):
     premium_users = load_premium_users()
